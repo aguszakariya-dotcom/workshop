@@ -3,8 +3,8 @@ _git() {
     push)
         git branch
         read -p "Masukkan nama branch anda?: " branch
-        read -p "Apakah Branch Anda Sudah Benar (y/n):" branch
-        if [[ $branch == "y" ]]; then
+        read -p "Apakah Branch Anda Sudah Benar (y/n):" yn
+        if [[ $yn == "y" ]]; then
             git add .
             git commit -m "$(date)"
             git push origin $branch
