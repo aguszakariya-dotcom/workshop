@@ -18,6 +18,9 @@ else
     jalankan)
         nodemon index.js
         ;;
+    git)
+        _git $@
+        ;;
     *)
         echo 'perintah belum ada , silahkan ketik bantuan untuk menampilkan bantuan'
         ;;

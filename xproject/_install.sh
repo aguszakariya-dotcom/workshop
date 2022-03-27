@@ -63,7 +63,7 @@ _install() {
     module.exports = {api}
     '
     echo "$SERVER_API" | sed 's/    *//g' >api.js
-
+    prisma generate
     echo "$(tput setaf 2)Installation Successful$(tput sgr0)"
 
 
