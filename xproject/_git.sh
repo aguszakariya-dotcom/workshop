@@ -19,8 +19,22 @@ _git() {
         read -p "Masukkan nama branch yang ingin anda tarik?: " branch
         git pull origin $branch
         ;;
+    merge)
+        git branch
+        read -p "Masukkan nama branch yang ingin anda merge?: " branch
+        read -p "Apakah Branch Anda Sudah Benar (y/n):" yn
+        if [[ $yn == "y" ]]; then
+            git merge $branch
+            echo "$(tput setaf 2)Merge Successful$(tput sgr0)"
+        else
+            echo "$(tput setaf 1)ok.. NO$(tput sgr0)"
+        fi
+        ;;
     *)
-        echo 'perintah yang tersedia : push , pull'
+        echo 'perintah yang tersedia : 
+        push        untuk push branch, 
+        pull,       untuk mengambil data dari remote
+        merge,      untuk merge branch'
         ;;
     esac
 }
