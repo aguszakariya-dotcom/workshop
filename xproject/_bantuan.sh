@@ -13,6 +13,7 @@ _bantuan(){
     prisma      menjalankan prisma otomatis , 
                 seperti generate , migrate , dan lainnya secara otomatis
                 lihat perintah [$0 prisma] untuk melihat perintah yang tersedia
+    jalankan    menjalankan server , php | nodejs
 
 
     - untuk menjalankan server ketik di terminal dengan perintah [$0 jalankan]
