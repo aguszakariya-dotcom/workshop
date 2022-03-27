@@ -8,3 +8,18 @@ provider = "mysql"
 url= env("DATABASE_URL")
 }
 
+model tbcustomer {
+    id_customer Int @id
+    nama_customer String
+    alamat String
+}
+
+model tbsample{
+    id_sample Int @id
+    id_customer Int
+    style String
+    qty String
+    acc1 Int
+    acc2 Int
+    keterangan String
+}

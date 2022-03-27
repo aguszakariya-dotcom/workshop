@@ -1,0 +1,10 @@
+*{
+    font-family: 'photon-entypo', 'Roboto', 'Helvetica Neue';
+    font-size: 13px;
+}
+.navbar{
+    background-color: #1c0000ee;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+}
