@@ -8,7 +8,12 @@ _prisma() {
         npx prisma generate
         ;;
     *)
-        echo 'perintah yang tersedia : generate , migrate'
+        echo '
+        perintah yang tersedia : 
+        generate ,  untuk mengenerate schema prisma keadlan kodingan javascript
+        migrate,    untuk migrasi database prisma setelalh anda membuat atau mengedit schema
+        
+        '   
         ;;
     esac
 

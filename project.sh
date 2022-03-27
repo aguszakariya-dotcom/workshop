@@ -16,7 +16,7 @@ else
         _bantuan $@
         ;;
     jalankan)
-        nodemon index.js
+        _jalankan $@
         ;;
     git)
         _git $@

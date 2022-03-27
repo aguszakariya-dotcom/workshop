@@ -27,6 +27,7 @@ _install() {
     const express = require('express')
     const app = express()
     const port = process.env.PORT || 3000
+    const cors = require('cors')
     const {api} = require('./api.js')
 
     app.use(express.static('views'))
