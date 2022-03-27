@@ -1,5 +1,5 @@
 _install() {
-    npm i express @prisma/client cors
+    npm i express @prisma/client cors prisma
     [ -d "./prisma" ] && rm -r prisma
     npx prisma init
     echo "$(tput setaf 6)"Setting Databasenya ..."$(tput sgr0)"
@@ -63,7 +63,7 @@ _install() {
     module.exports = {api}
     '
     echo "$SERVER_API" | sed 's/    *//g' >api.js
-    prisma generate
+    npx prisma generate
     echo "$(tput setaf 2)Installation Successful$(tput sgr0)"
 
 

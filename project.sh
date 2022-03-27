@@ -10,7 +10,7 @@ if [[ $# -eq 0 ]]; then
 else
     case $1 in
     install)
-        _install
+        _install $@
         ;;
     bantuan)
         _bantuan $@
@@ -20,6 +20,9 @@ else
         ;;
     git)
         _git $@
+        ;;
+    prisma)
+        _prisma $@
         ;;
     *)
         echo 'perintah belum ada , silahkan ketik bantuan untuk menampilkan bantuan'
