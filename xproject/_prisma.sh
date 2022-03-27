@@ -5,6 +5,7 @@ _prisma() {
         ;;
     migrate)
         npx prisma migrate dev --name "$(date)"
+        npx prisma generate
         ;;
     *)
         echo 'perintah yang tersedia : generate , migrate'
