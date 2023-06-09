@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Form Alamat</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div class="mb-3 row">
+    <label for="provinsi" class="col-sm-4 col-form-label">Provinsi</label>
+    <div class="col-sm-8">
+      <select class="form-control" name="provinsi" id="provinsi">
+        <option value="">Pilih Provinsi</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="kabupaten" class="col-sm-4 col-form-label">Kota/Kabupaten</label>
+    <div class="col-sm-8">
+      <select class="form-control" name="kabupaten" id="kabupaten">
+        <option value="">Pilih Kota/Kabupaten</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
+    <div class="col-sm-8">
+      <select class="form-control" name="kecamatan" id="kecamatan">
+        <option value="">Pilih Kecamatan</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="desa" class="col-sm-4 col-form-label">Desa/Kelurahan</label>
+    <div class="col-sm-8">
+      <select class="form-control" name="desa" id="desa">
+        <option value="">Pilih Desa / Kelurahan</option>
+    </div>
+  </div>
+
+  <script>
+    // Mendapatkan data provinsi dari API
+    $.ajax({
+      url: "https://dev.farizdotid.com/api/daerahindonesia/provinsi",
+      type: "GET",
+      success: function (response) {
+        var provinces = response.provinsi;
+        var select = $("#provinsi");
+        $.each(provinces, function (index, province) {
+          select.append('<option value="' + province.id + '">' + province.nama + '</option>');
+        });
+      }
+    });
+
+    // Mengisi data kota/kabupaten berdasarkan provinsi yang dipilih
+    $("#provinsi").on("change", function () {
+      var provinceId = $(this).val();
+      var select = $("#kabupaten");
+      select.empty();
+      select.append('<option value="">Pilih Kota/Kabupaten</option>');
+
+      $.ajax({
+        url: "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=" + provinceId,
+        type: "GET",
+        success: function (response) {
+          var cities = response.kota_kabupaten;
+          $.each(cities, function (index, city) {
+            select.append('<option value="' + city.id + '">' + city.nama + '</option>');
+          });
+        }
+      });
+    });
+
+    // Mengisi data kecamatan berdasarkan kota/kabupaten yang dipilih
+    $("#kabupaten").on("change", function () {
+      var cityId = $(this).val();
+      var select = $("#kecamatan");
+      select.empty();
+      select.append('<option value="">Pilih Kecamatan</option>');
+
+      $.ajax({
+        url: "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=" + cityId,
+        type: "GET",
+        success: function (response) {
+          var districts = response.kecamatan;
+          $.each(districts, function (index, district) {
+            select.append('<option value="' + district.id + '">' + district.nama + '</option>');
+          });
+        }
+      });
+    });
+
+     // Mengisi data kelurahan/desa berdasarkan kecamatan yang dipilih
+     $("#kecamatan").on("change", function () {
+      var districtId = $(this).val();
+      var select = $("#desa");
+      select.empty();
+      select.append('<option value="">Pilih Desa/Kelurahan</option>');
+
+      $.ajax({
+        url: "https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=" + districtId,
+        type: "GET",
+        success: function (response) {
+          var villages = response.kelurahan;
+          $.each(villages, function (index, village) {
+            select.append('<option value="' + village.id + '">' + village.nama + '</option>');
+          });
+        }
+      });
+    });
+</script>
+<script>
+   
+  </script>
+  
+</body>
+
+</html>
